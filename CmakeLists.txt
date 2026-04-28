@@ -1,0 +1,37 @@
+cmake_minimum_required(VERSION 3.11)
+project(Ships)
+
+set(CMAKE_CXX_STANDARD 17)
+
+include(FetchContent)
+FetchContent_Declare(
+  raylib
+  URL https://github.com/raysan5/raylib/archive/master.tar.gz
+)
+FetchContent_MakeAvailable(raylib)
+
+add_executable(${PROJECT_NAME} 
+    src/Ships/main.cpp
+    src/Ships/core/engine.cpp
+    src/Ships/core/scene.cpp
+    src/Ships/core/game_object.cpp
+    src/Ships/game/player.cpp
+    src/Ships/game/entity.cpp
+    src/Ships/game/enemy.cpp
+    src/Ships/game/enemyController.cpp
+)
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE include)
+
+target_link_libraries(${PROJECT_NAME} raylib)
+if(UNIX AND NOT APPLE)
+    target_link_libraries(${PROJECT_NAME} m)
+endif()
+
+add_custom_target(copy_assets ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/assets
+    ${CMAKE_BINARY_DIR}/assets
+)
+add_dependencies(${PROJECT_NAME} copy_assets)
