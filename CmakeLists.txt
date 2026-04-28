@@ -19,6 +19,8 @@ add_executable(${PROJECT_NAME}
     src/Ships/game/entity.cpp
     src/Ships/game/enemy.cpp
     src/Ships/game/enemyController.cpp
+    src/Ships/game/projectile.cpp
+    src/Ships/game/projectileController.cpp
 )
 
 

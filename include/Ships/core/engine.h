@@ -3,6 +3,7 @@
 #include "memory.h"
 #include "vector"
 #include "Ships/game/enemyController.h"
+#include "Ships/game/projectileController.h"
 
 #include <raylib.h>
 
@@ -21,4 +22,5 @@ class Engine{
         
         std::unique_ptr<Scene> m_currentScene;
         std::unique_ptr<EnemyController> m_enemyController;
+        std::unique_ptr<ProjectileController> m_projectileController;
 };

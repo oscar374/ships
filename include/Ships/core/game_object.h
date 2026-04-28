@@ -7,6 +7,7 @@ class GameObject{
     public:
         GameObject(std::string name, Vector2 pos, Vector2 size, std::string texturePath = "assets/textures/noTexture.png");
         virtual ~GameObject() {}
+        
         void Move(Vector2 offset);
 
         std::string GetName(){
