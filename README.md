@@ -1,6 +1,6 @@
 <h1> How to install: </h1>
 <br>
-<h2> 1. Create a build directory </h2> <br>
+<h2> 1. Create a build directory in the root directory of the project: </h2> <br>
 mkdir build  <br>
 cd build <br>
 
@@ -8,4 +8,5 @@ cd build <br>
 - cmake .. <br>
 - cmake --build . <br>
 
-<h2>And then run</h2>
+<h2>And then run the exe in</h2>
+build/Release/Ships.exe
