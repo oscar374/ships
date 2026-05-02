@@ -1,13 +1,13 @@
 #include "ships/game/enemyController.h"
 
-void EnemyController::MoveEnemies(){
-    int output;
+void EnemyController::MoveEnemies(float deltaTime){
+    float output;
 
-    if(m_enemiesDirection) output = m_enemiesSpeed;
-    else output = -m_enemiesSpeed;
+    if(m_enemiesDirection) output = m_enemiesSpeed * deltaTime;
+    else output = -m_enemiesSpeed * deltaTime;
 
     for(const auto& enemy : m_enemies){
-        enemy->Move(Vector2{(float)output, 0});
+        enemy->Move(Vector2{output, 0});
     }
     DirectionChangeCheck();
 }

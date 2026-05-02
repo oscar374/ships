@@ -2,8 +2,13 @@
 
 #include <iostream>
 
-void ProjectileController::MoveProjectiles(const std::vector<std::shared_ptr<Projectile>>& projectiles){
+void ProjectileController::MoveProjectiles(const std::vector<std::shared_ptr<Projectile>>& projectiles, float deltaTime){
     for (auto& projectile : projectiles) {
-        projectile->Move(projectile->GetMovementVector());
+        Vector2 finalVector = Vector2{
+            projectile->GetMovementVector().x * deltaTime,
+            projectile->GetMovementVector().y * deltaTime
+        };
+        
+        projectile->Move(finalVector);
     }
 }

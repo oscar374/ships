@@ -13,7 +13,7 @@ class EnemyController{
         void SetEnemies(std::vector<std::shared_ptr<Enemy>> enemies){
             m_enemies = enemies;
         }
-        void MoveEnemies();
+        void MoveEnemies(float deltaTime);
         void AutoSetEnemiesPosition();
     private:
         void CalculateTotalEnemiesWidth();

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Ships/game/entity.h";
+#include "Ships/game/entity.h"
+#include "Ships/core/timer.h"
 
 class Player : public Entity{
     public:
@@ -11,8 +12,10 @@ class Player : public Entity{
         }
         virtual ~Player() {}
 
-        void PlayerMovement();
+        void PlayerMovement(float deltaTime);
 
     private:
         int m_movementSpeed = 5;
+        float m_shotsPerSecond = 4;
+        Timer m_shootingTimer = Timer(10);
 };

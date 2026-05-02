@@ -2,6 +2,7 @@
 // Game made by Oskar Pach | github: oscar374
 
 #include "Ships/core/engine.h"
+#include "Ships/core/service_locator.h"
 #include <iostream>
 
 Engine::Engine(){
@@ -11,8 +12,9 @@ Engine::Engine(){
 }
 
 void Engine::Start(){
+    ServiceLocator::setEngine(this);
     InitWindow(m_windowWidth, m_windowHeight, "Ships");
-    SetTargetFPS(60);
+    SetTargetFPS(120);
 
     m_currentScene = std::make_unique<Scene>();
     m_enemyController = std::make_unique<EnemyController>(m_windowWidth, m_windowHeight);
@@ -36,21 +38,13 @@ void Engine::Start(){
 void Engine::Frame(){
     BeginDrawing();
     ClearBackground(BLACK);
-        
-    m_enemyController->MoveEnemies();
-    m_currentScene->GetPlayer()->PlayerMovement();
-    m_projectileController->MoveProjectiles(m_currentScene->GetProjectiles());
-
-    auto projectile = std::make_shared<Projectile>(
-        "proj",
-        Vector2{m_currentScene->GetPlayer()->GetPosition().x + (m_currentScene->GetPlayer()->GetSize().x / 2), m_currentScene->GetPlayer()->GetPosition().y},
-        Vector2{2, 6},
-        Vector2{0, -3},
-        "assets/textures/projectiles/projectile.png"
-    );
-
-    m_currentScene->AddGameObject(projectile);
     
+    float deltaTime = m_gameSpeed * GetFrameTime();
+
+    m_enemyController->MoveEnemies(deltaTime);
+    m_projectileController->MoveProjectiles(m_currentScene->GetProjectiles(), deltaTime);
+    m_currentScene->GetPlayer()->PlayerMovement(deltaTime);
+
     Render();
 
     EndDrawing();

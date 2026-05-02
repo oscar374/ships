@@ -15,6 +15,8 @@ add_executable(${PROJECT_NAME}
     src/Ships/core/engine.cpp
     src/Ships/core/scene.cpp
     src/Ships/core/game_object.cpp
+    src/Ships/core/service_locator.cpp
+    src/Ships/core/timer.cpp
     src/Ships/game/player.cpp
     src/Ships/game/entity.cpp
     src/Ships/game/enemy.cpp

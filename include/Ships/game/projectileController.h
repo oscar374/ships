@@ -7,6 +7,6 @@
 
 class ProjectileController {
     public:
-        void MoveProjectiles(const std::vector<std::shared_ptr<Projectile>>& projectiles);
+        void MoveProjectiles(const std::vector<std::shared_ptr<Projectile>>& projectiles, float deltaTime);
     private:
 };

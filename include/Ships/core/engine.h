@@ -12,6 +12,12 @@
 class Engine{
     public: 
         Engine();
+        Scene* GetScene(){
+            return m_currentScene.get();
+        }
+        Vector2 GetWindowProportions(){
+            return Vector2{(float)m_windowWidth, (float)m_windowHeight};
+        }
     private:
         void Render();
         void Frame();
@@ -19,6 +25,8 @@ class Engine{
 
         int m_windowWidth = 500;
         int m_windowHeight = 800;
+
+        float m_gameSpeed = 80;
         
         std::unique_ptr<Scene> m_currentScene;
         std::unique_ptr<EnemyController> m_enemyController;
